@@ -26,53 +26,64 @@ class GameScreenPVP(BaseScreen):
     def update(self):
         pass
 
+    def game_logic(self):
+        if self.move_p1 == "rock" and self.move_p2 == "scissors":
+                self.next_screen = "winner_p1"
+                self.running = False
+        elif self.move_p1 == "paper" and self.move_p2 == "rock":
+            self.next_screen = "winner_p1"
+            self.running = False
+        elif self.move_p1 == "scissors" and self.move_p2 == "paper":
+            self.next_screen = "winner_p1"
+            self.running = False
+        elif self.move_p2 == "rock" and self.move_p1 == "scissors":
+                self.next_screen = "winner_p2"
+                self.running = False
+        elif self.move_p2 == "paper" and self.move_p1 == "rock":
+            self.next_screen = "winner_p2"
+            self.running = False
+        elif self.move_p2 == "scissors" and self.move_p1 == "paper":
+            self.next_screen = "winner_p2"
+            self.running = False
+        elif self.move_p1 == self.move_p2:
+            self.next_screen = "draw"
+            self.running = False
+
+
+
+
+    
     def manage_event(self, event):
         if event.type == pygame.KEYDOWN:   
             if pygame.key.name(event.key) == "q":
                 self.move_p1 = "rock"
                 print(self.move_p1)
+                GameScreenPVP.game_logic(self)
                 # self.next_screen ="game_p2"
             if pygame.key.name(event.key) == "w":
                 self.move_p1 = "paper"
                 print(self.move_p1)
+                GameScreenPVP.game_logic(self)
                 # self.next_screen ="game_p2"
                 # self.running = False
             if pygame.key.name(event.key) == "e":
                 self.move_p1 = "scissors"
                 print(self.move_p1)
+                GameScreenPVP.game_logic(self)
             if pygame.key.name(event.key) == "i":
                 self.move_p2 = "rock"
                 print(self.move_p2)
+                GameScreenPVP.game_logic(self)
             if pygame.key.name(event.key) == "o":
                 self.move_p2 = "paper"
                 print(self.move_p2)
+                GameScreenPVP.game_logic(self)
             if pygame.key.name(event.key) == "p":
                 self.move_p2 = "scissors"
                 print(self.move_p2)
-                self.running = False
+                GameScreenPVP.game_logic(self)
 
-            if self.move_p1 == "rock" and self.move_p2 == "scissors":
-                self.next_screen = "winner_p1"
-                self.running = False
-            elif self.move_p1 == "paper" and self.move_p2 == "rock":
-                self.next_screen = "winner_p1"
-                self.running = False
-            elif self.move_p1 == "scissors" and self.move_p2 == "paper":
-                self.next_screen = "winner_p1"
-                self.running = False
-            elif self.move_p2 == "rock" and self.move_p1 == "scissors":
-                    self.next_screen = "winner_p2"
-                    self.running = False
-            elif self.move_p2 == "paper" and self.move_p1 == "rock":
-                self.next_screen = "winner_p2"
-                self.running = False
-            elif self.move_p1 == "scissors" and self.move_p2 == "paper":
-                self.next_screen = "winner_p2"
-                self.running = False
-            elif self.move_p1 == self.move_p2:
-                self.next_screen = "draw"
-                self.running = False
-
+            
 
 
 
