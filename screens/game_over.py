@@ -10,7 +10,8 @@ from components .text import render_text,center_text
 class GameOver(BaseScreen):
     def __init__(self,window,filename = "data/score.json"):
         super().__init__(window)
-        print("Game over screen is being called")
+        self.clock = pygame.time.Clock()
+        self.time_counter = 0
         self.filename = filename
         with open (filename, "r") as f:
             contents = json.load(f)
@@ -18,6 +19,9 @@ class GameOver(BaseScreen):
         self.play_again = TextBox((300,80), "Play again?", bgcolor=(250,235,215))
         self.final_score = TextBox((400,80), f"Your final score is: {contents['score']}! ", bgcolor=(250,235,215))
         self.menu = TextBox((300,80), "Go back to menu?", bgcolor=(250,235,215))
+        self.start_time = pygame.time.get_ticks()
+
+
     def draw(self):
         self.window.fill((0,0,0))
         self.window.blit(self.game_over.image,(150,50))
@@ -27,7 +31,14 @@ class GameOver(BaseScreen):
      
 
     def update(self):
-        pass
+        now = pygame.time.get_ticks()
+        # self.time_counter = self.clock.tick()
+        if self.running == True:
+            if now - self.start_time > 5000:
+                print("Inactive for more than 5 seconds. Returning to main menu.")
+                self.next_screen = "welcome"
+                self.running = False
+
 
     def manage_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN: 

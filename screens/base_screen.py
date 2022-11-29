@@ -5,13 +5,11 @@ class BaseScreen:
     """Base class for all game screens"""
 
     def __init__(self, window):
-        print("Base screen is being called")
         # window surface
         self.window = window
         # By default, there is no next screen (= game quits)
         self.next_screen = False
-        self.move_p1 = ""
-        self.move_p2 = ""
+        
    
 
     def run(self):

@@ -4,7 +4,7 @@ from .text import render_text, center_text
 pygame.font.init()
 
 
-class TextBox():
+class TextBox(pygame.sprite.Sprite):
     """
     Text box class:
     - size is a tuple (dimensions of the box)
@@ -27,6 +27,8 @@ class TextBox():
         self.draw()
         self.rect = self.image.get_rect()
 
+
+
     def draw(self):
         """Renders and centers the text"""
         self.image.fill(self.bgcolor)
@@ -34,4 +36,8 @@ class TextBox():
         center_text(text_surface, self.image)
         center_text(text_surface, self.title)
 
+
+    
+    def update(self):
+        self.text = self.text
   

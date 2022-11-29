@@ -10,5 +10,13 @@ class Rock(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.bottom = 600
+    
+    def update_p1(self):
+        self.rect.bottom = 320
+        self.rect.x = 30
+
+    def update_p2(self):
+        self.rect.bottom = 320
+        self.rect.x = 370
 
    

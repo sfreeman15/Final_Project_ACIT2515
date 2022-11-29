@@ -1,4 +1,5 @@
 import pygame
+import time
 import json
 from .base_screen import BaseScreen
 from components .text_box import TextBox
@@ -12,7 +13,8 @@ from components .scissors import Scissors
 class ResultsPVP(BaseScreen):
     def __init__(self,window):
         super().__init__(window)
-        print("Results Screen is being called!")
+        self.clock = pygame.time.Clock()
+        self.time_counter = 0
         self.paper = Paper()
         self.rock = Rock()
         self.scissors = Scissors()
@@ -22,6 +24,7 @@ class ResultsPVP(BaseScreen):
         self.tie = TextBox((300,80), "It's a draw!", bgcolor=(250,235,215))
         self.play_again = TextBox((300,80), "Play again?", bgcolor=(250,235,215))
         self.menu = TextBox((300,80), "Go back to menu?", bgcolor=(250,235,215))
+        self.start_time = pygame.time.get_ticks()
 
 
     def load_from_json(self):
@@ -96,7 +99,22 @@ class ResultsPVP(BaseScreen):
     
 
     def update(self):
-        pass
+        now = pygame.time.get_ticks()
+        # self.time_counter = self.clock.tick()
+        if self.running == True:
+            if now - self.start_time > 5000:
+                print("Inactive for more than 5 seconds. Returning to main menu.")
+                self.next_screen = "welcome"
+                self.running = False
+
+    # def countdown(self):        
+        
+      #get_ticks in constructor
+      #starting time where screen is displayed
+      #get_ticks in countdown, calculate difference
+      #compare get_ticks in countdown and constructor
+
+ 
 
     def manage_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN: 
@@ -107,3 +125,4 @@ class ResultsPVP(BaseScreen):
             if 100 < event.pos[0] < 450 and 510 < event.pos[1] < 590:
                 self.next_screen ="welcome"
                 self.running = False
+       

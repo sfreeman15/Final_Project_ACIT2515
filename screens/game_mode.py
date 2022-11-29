@@ -18,7 +18,7 @@ class GameMode(BaseScreen):
 
 
     def draw(self):
-        self.window.fill((69,139,0))
+        self.window.fill((0,0,0))
         # self.window.blit(self.play_outer.image, (200, 300))
         # center_text(self.title, (200, 50))
         self.window.blit(self.mode.image,(50,50))
@@ -40,5 +40,5 @@ class GameMode(BaseScreen):
             if 200 < event.pos[0] < 400 and 300 < event.pos[1] < 380:
                 self.next_screen ="cpu"
                 self.running = False
-
+    
  
