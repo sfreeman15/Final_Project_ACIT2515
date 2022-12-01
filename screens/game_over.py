@@ -59,6 +59,7 @@ class GameOver(BaseScreen):
             if 100 < event.pos[0] < 450 and 400 < event.pos[1] < 470:
                 self.next_screen ="cpu"
                 self.running = False
+                self.state["score"] = 0
             if 100 < event.pos[0] < 450 and 510 < event.pos[1] < 590:
                 self.next_screen ="welcome"
                 self.running = False
