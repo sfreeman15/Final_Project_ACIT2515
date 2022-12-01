@@ -10,17 +10,19 @@ from components .text import render_text,center_text
 
 #for player 1?
 class GameScreenCPU(BaseScreen):
-    def __init__(self,window):
-        super().__init__(window)
+    def __init__(self,window,state):
+        super().__init__(window,state)
         self.json_file = "data/score.json"
+        self.user_file = "data/initial_user.json"
         self.cpu_choice = ""
         self.move_player = ""
         self.player_score = {
             "score": 0
         }
+
         self.move = TextBox((300,80), "Choose your move!", bgcolor=(250,235,215))
         
-        self.time_limit=pygame.time.get_ticks()
+        self.time_limit = pygame.time.get_ticks()
 
     def draw(self):
         self.window.fill((0,0,0))
@@ -42,28 +44,52 @@ class GameScreenCPU(BaseScreen):
     def update(self):
         pass
 
-        
+    # def load_from_json(self):
+    #     with open(self.user_file ,"r") as f:
+    #         self.data = json.load(f)
+    #         # for name in data:
+    #         if self.state["name"] not in self.data.keys():
+    #             self.data[self.state["name"]] = []
+            
+    #         self.data[self.state["name"]].append(self.player_score["score"])            
+                
+
     def write_to_json(self):
+        print(self.state)
+        with open(self.json_file,"r") as f:
+            self.data = json.load(f)
+        if self.state["name"] not in self.data.keys():
+            self.data[self.state["name"]] = []   
+        self.data[self.state["name"]].append(self.player_score["score"])
         with open(self.json_file, "w") as f:
-            json.dump(self.player_score, f)
+            json.dump(self.data, f)
+    
+
+
 
 
     def game_logic(self):
         if self.move_player == "rock" and  self.cpu_choice == "scissors":
             self.player_score["score"] += 1
+            self.state["score"] += 1
         elif self.move_player == "paper" and self.cpu_choice == "rock":
            self.player_score["score"] += 1 
+           self.state["score"] += 1
         elif self.move_player == "scissors" and self.cpu_choice == "paper":
             self.player_score["score"] += 1
+            self.state["score"] += 1
         elif self.cpu_choice == "rock" and self.move_player == "scissors":
+            # self.load_from_json()
             self.write_to_json()
             self.next_screen = "game_over"
             self.running = False
         elif self.cpu_choice == "paper" and self.move_player == "rock":
+            # self.load_from_json()
             self.write_to_json()
             self.next_screen = "game_over"
             self.running = False
         elif self.cpu_choice== "scissors" and self.move_player == "paper":
+            # self.load_from_json()
             self.write_to_json()
             self.next_screen = "game_over"
             self.running = False

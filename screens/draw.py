@@ -8,8 +8,8 @@ from components .text import render_text,center_text
 
 #for player 2?
 class Draw(BaseScreen):
-    def __init__(self,window):
-        super().__init__(window)
+    def __init__(self,window,state):
+        super().__init__(window,state)
         print("Draw")
         self.tie = TextBox((300,80), "It's a draw!", bgcolor=(250,235,215))
         self.play_again = TextBox((300,80), "Try again?", bgcolor=(250,235,215))

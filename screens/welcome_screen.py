@@ -8,8 +8,8 @@ from components .scissors import Scissors
 
 
 class WelcomeScreen(BaseScreen):
-    def __init__(self,window):
-        super().__init__(window)
+    def __init__(self,window,state):
+        super().__init__(window,state)
         self.title = TextBox((300,80), "Rock Paper Scissors", bgcolor=(250,235,215))
         self.play = TextBox((200,80), "Play", bgcolor=(250,235,215))
         self.rock = Rock()

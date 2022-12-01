@@ -6,9 +6,8 @@ from components .text import render_text,center_text
 
 
 class GameMode(BaseScreen):
-    def __init__(self,window):
-        super().__init__(window)
-        print("Welcome screen is being called")
+    def __init__(self,window,state):
+        super().__init__(window,state)
         self.mode = TextBox((500,80), "What Game Mode do you want to play?", bgcolor=(250,235,215))
         self.pvp = TextBox((200,80), "Player vs. Player", bgcolor=(250,235,215))
         # self.play_outer= TextBox((200,100),bgcolor=(0,0,0))
@@ -38,7 +37,7 @@ class GameMode(BaseScreen):
                 self.next_screen ="game_pvp"
                 self.running = False
             if 200 < event.pos[0] < 400 and 300 < event.pos[1] < 380:
-                self.next_screen ="cpu"
+                self.next_screen ="username"
                 self.running = False
     
  

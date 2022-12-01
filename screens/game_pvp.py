@@ -10,8 +10,8 @@ from components .paper import Paper
 
 #for player 1?
 class GameScreenPVP(BaseScreen):
-    def __init__(self,window):
-        super().__init__(window)
+    def __init__(self,window,state):
+        super().__init__(window,state)
         self.paper = Paper()
         self.timer = pygame.time.get_ticks()
         self.countdown = TextBox((150,80), "Choose your move!", bgcolor=(250,235,215))
@@ -30,7 +30,8 @@ class GameScreenPVP(BaseScreen):
         self.paper_input_p2 = TextBox((150,50), "o = paper", bgcolor=(250,235,215))
         self.scissors_input_p2 = TextBox((150,50), "p = scissors", bgcolor=(250,235,215))
 
-
+    
+    
 
     def draw(self):
         self.window.fill((0,0,0))
@@ -45,7 +46,7 @@ class GameScreenPVP(BaseScreen):
         self.window.blit(self.rock_input_p2.image,(400,300))
         self.window.blit(self.paper_input_p2.image,(400,350))
         self.window.blit(self.scissors_input_p2.image,(400,400))
-
+    
 
 
         

@@ -11,8 +11,8 @@ from components .scissors import Scissors
 
 #for player 2?
 class ResultsPVP(BaseScreen):
-    def __init__(self,window):
-        super().__init__(window)
+    def __init__(self,window,state):
+        super().__init__(window,state)
         self.clock = pygame.time.Clock()
         self.time_counter = 0
         self.paper = Paper()
@@ -96,16 +96,17 @@ class ResultsPVP(BaseScreen):
             self.window.blit(self.tie.image,(150,50))
         self.window.blit(self.play_again.image,  (150, 400))
         self.window.blit(self.menu.image, (150, 510))
+        self.window.blit(self.timer.image, (20,20))
     
-
     def update(self):
         now = pygame.time.get_ticks()
         # self.time_counter = self.clock.tick()
         if self.running == True:
-            if now - self.start_time > 5000:
-                print("Inactive for more than 5 seconds. Returning to main menu.")
+            if now - self.start_time > 15000:
+                print("Inactive for more than 15 seconds. Returning to main menu.")
                 self.next_screen = "welcome"
                 self.running = False
+        self.timer = TextBox((50,50), str(round(15-(now - self.start_time)/1000,1)),color = (255,255,255), bgcolor=(0,0,0))
 
     # def countdown(self):        
         
