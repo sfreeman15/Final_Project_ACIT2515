@@ -16,9 +16,10 @@ class GameOver(BaseScreen):
         self.final_score = self.state.values()
         with open (filename, "r") as f:
             contents = json.load(f)
+        self.username = TextBox((300,80), f"{self.state['name']}", bgcolor=(250,235,215))
         self.game_over = TextBox((300,80), "Game Over!", bgcolor=(250,235,215))
         self.play_again = TextBox((300,80), "Play again?", bgcolor=(250,235,215))
-        self.final_score = TextBox((400,80), f"Your final score is: {self.state['score']}! ", bgcolor=(250,235,215))
+        self.final_score = TextBox((300,80), f"Your final score is: {self.state['score']}! ", bgcolor=(250,235,215))
         self.menu = TextBox((300,80), "Go back to menu?", bgcolor=(250,235,215))
         self.start_time = pygame.time.get_ticks()
         
@@ -28,7 +29,8 @@ class GameOver(BaseScreen):
     def draw(self):
         self.window.fill((0,0,0))
         self.window.blit(self.game_over.image,(150,50))
-        self.window.blit(self.final_score.image,(100,175))
+        self.window.blit(self.username.image, (150,175))
+        self.window.blit(self.final_score.image,(150,250))
         self.window.blit(self.play_again.image,  (150, 400))
         self.window.blit(self.menu.image, (150, 510))
         self.window.blit(self.timer.image, (20,20))

@@ -21,6 +21,9 @@ class GameScreenCPU(BaseScreen):
         }
 
         self.move = TextBox((300,80), "Choose your move!", bgcolor=(250,235,215))
+        self.q_rock = TextBox((300,80), "q: rock", bgcolor=(250,235,215))
+        self.w_paper = TextBox((300,80), "w: paper", bgcolor=(250,235,215))
+        self.e_scissors = TextBox((300,80), "e: scissors", bgcolor=(250,235,215))
         
         self.time_limit = pygame.time.get_ticks()
 
@@ -29,8 +32,10 @@ class GameScreenCPU(BaseScreen):
         # self.window.blit(self.play_outer.image, (200, 300))
         # center_text(self.title, (200, 50))
         self.window.blit(self.move.image,(150,50))
-
-        
+        self.window.blit(self.q_rock.image,(150,125))
+        self.window.blit(self.w_paper.image,(150,200))
+        self.window.blit(self.e_scissors.image,(150,275))
+    
     def draw_score(self):
         pass
 
