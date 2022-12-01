@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('home') }}">Homepage</a>
+<h2> Scores for {{ uname }} </h2>
+<table>
+{% for username in name %}
+    {% if uname == username[0] %}
+    <tr>
+        <th><b>User</b> &#128514;</th>
+        <th>Scores</th>
+      </tr>
+    <tr>
+        
+        <td>{{uname}}</td>
+        
+        <td>{{ username[1] }}</td>
+    </tr>
+        
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}
