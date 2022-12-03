@@ -43,7 +43,6 @@ class WelcomeScreen(BaseScreen):
             event (_type_): MOUSEBUTTONDOWN event in pygame
         """
         if event.type == pygame.MOUSEBUTTONDOWN: 
-            print(event.pos[0])
             if 200 < event.pos[0] < 400 and 190 < event.pos[1] < 270:
                 self.next_screen ="game_mode"
                 self.running = False

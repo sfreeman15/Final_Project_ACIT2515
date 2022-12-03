@@ -118,7 +118,6 @@ class ResultsPVP(BaseScreen):
             event (_type_): MOUSEBUTTONDOWN event in pygame
         """
         if event.type == pygame.MOUSEBUTTONDOWN: 
-            print(event.pos[0])
             if 100 < event.pos[0] < 450 and 400 < event.pos[1] < 470:
                 self.next_screen ="game_pvp"
                 self.running = False

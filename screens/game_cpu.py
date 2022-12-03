@@ -20,7 +20,8 @@ class GameScreenCPU(BaseScreen):
         self.cpu_choice = ""
         self.move_player = ""
         self.player_score = {
-            "score": 0
+            "score": 0,
+            'moves': []
                             }   
         self.move = TextBox((300,80), "Choose your move!", bgcolor=(250,235,215))
         self.q_rock = TextBox((300,80), "q: rock", bgcolor=(250,235,215))

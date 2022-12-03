@@ -1,1 +1,1 @@
-[{"p1_move": "scissors", "p1_win": "no", "draw": "no"}, {"p2_move": "rock", "p2_win": "yes", "draw": "no"}]
+[{"p1_move": "paper", "p1_win": "no", "draw": "yes"}, {"p2_move": "paper", "p2_win": "no", "draw": "yes"}]
