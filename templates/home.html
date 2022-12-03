@@ -3,8 +3,10 @@
 <h2>High-Score Leaderboard</h2>
 <h3>Rock Paper Scissors</h3>
 <p> 	&#128483; &#128175;</p>
-<table>
-    <tr>
+
+
+<table id = "myTable">
+    <tr class = "header">
       <th><b>User</b></th>
       <th>High-Score</th>
     </tr>
@@ -14,7 +16,7 @@
         <td><a href={{ url_for('get_name', player=name[i][0] ) }}>{{ name[i][0] }}</a></td>
         <td>{{ name[i][1][0] }}</td>
     </tr>
+
     {% endfor %}
-
+</table>
 {% endblock %}
-

@@ -1,17 +1,13 @@
 import pygame
-import time
 import json
-from .base_screen import BaseScreen
-from components .text_box import TextBox
-from components .text import render_text,center_text
-from components .rock import Rock
-from components .paper import Paper
-from components .scissors import Scissors
+from screens import BaseScreen
+from components import TextBox, Rock, Paper, Scissors
 
 
 #for player 2?
 class ResultsPVP(BaseScreen):
     def __init__(self,window,state):
+        """Screen for showing the results of player vs. player mode"""
         super().__init__(window,state)
         self.clock = pygame.time.Clock()
         self.time_counter = 0
@@ -28,10 +24,12 @@ class ResultsPVP(BaseScreen):
 
 
     def load_from_json(self):
+        """Loads the pvp_results.json file"""
         with open(self.json_file, "r") as f:
             return json.load(f)
     
     def draw(self):
+        """Displays text and images to the window. Depending on the moves chosen by each player, it will display a different sprite. Example: If player 1 chose rock, will display rock sprite on the left side. If player 2 chose scissors, will display scissor sprite on the right side"""
         self.window.fill((0,0,0))   
         winner = ResultsPVP.load_from_json(self)
         if winner[0]["p1_win"] == "yes" and winner[1]["p2_win"] == "no":
@@ -99,8 +97,10 @@ class ResultsPVP(BaseScreen):
         self.window.blit(self.timer.image, (20,20))
     
     def update(self):
+        """
+        Updates the timer. Timer counts down from 15. Once timer reaches zero, goes back to the welcome screen.
+        """
         now = pygame.time.get_ticks()
-        # self.time_counter = self.clock.tick()
         if self.running == True:
             if now - self.start_time > 15000:
                 print("Inactive for more than 15 seconds. Returning to main menu.")
@@ -108,16 +108,15 @@ class ResultsPVP(BaseScreen):
                 self.running = False
         self.timer = TextBox((50,50), str(round(15-(now - self.start_time)/1000,1)),color = (255,255,255), bgcolor=(0,0,0))
 
-    # def countdown(self):        
-        
-      #get_ticks in constructor
-      #starting time where screen is displayed
-      #get_ticks in countdown, calculate difference
-      #compare get_ticks in countdown and constructor
-
  
 
     def manage_event(self, event):
+        """
+        Changes the screen if the player clicks on the play again, go back to main menu textboxes.
+
+        Args:
+            event (_type_): MOUSEBUTTONDOWN event in pygame
+        """
         if event.type == pygame.MOUSEBUTTONDOWN: 
             print(event.pos[0])
             if 100 < event.pos[0] < 450 and 400 < event.pos[1] < 470:

@@ -20,7 +20,7 @@ class Game:
     def __init__(self):
         # Creates the window
         self.window = pygame.display.set_mode((600, 700))
-        print("rps screen is being called")
+     
         
 
     def run(self):

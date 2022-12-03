@@ -10,7 +10,6 @@ class BaseScreen:
         self.state = state
         # By default, there is no next screen (= game quits)
         self.next_screen = False
-        # self.state = state
         
    
 
